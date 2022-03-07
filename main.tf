@@ -23,6 +23,26 @@ resource "aws_instance" "dev" {
   vpc_security_group_ids = [aws_security_group.ssh-access.id]
 }
 
+resource "aws_instance" "dev4" {
+  ami           = "ami-0892d3c7ee96c0bf7"
+  instance_type = "t2.micro"
+  key_name      = "dev"
+  tags = {
+    Name = "dev4"
+  }
+  vpc_security_group_ids = [aws_security_group.ssh-access.id]
+}
+
+resource "aws_instance" "dev5" {
+  ami           = "ami-0892d3c7ee96c0bf7"
+  instance_type = "t2.micro"
+  key_name      = "dev"
+  tags = {
+    Name = "dev5"
+  }
+  vpc_security_group_ids = [aws_security_group.ssh-access.id]
+}
+
 resource "aws_key_pair" "dev" {
   key_name   = "dev"
   public_key = file("dev.pub")
@@ -42,3 +62,13 @@ resource "aws_security_group" "ssh-access" {
     Name = "ssh-access"
   }
 }
+
+resource "aws_s3_bucket" "dev-4-bucket" {
+  bucket = "dev-4-bucket"
+  acl    = "private"
+  tags = {
+    Name        = "Dev 4 Bucket"
+    Environment = "Dev"
+  }
+}
+
