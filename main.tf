@@ -12,6 +12,11 @@ provider "aws" {
   region = "us-west-2"
 }
 
+provider "aws" {
+  alias  = "us-west-1"
+  region = "us-west-1"
+}
+
 resource "aws_instance" "dev" {
   count         = 3
   ami           = "ami-0892d3c7ee96c0bf7"
@@ -44,6 +49,17 @@ resource "aws_instance" "dev5" {
     Name = "Dev Server 5"
   }
   vpc_security_group_ids = [aws_security_group.ssh-access.id]
+}
+
+resource "aws_instance" "dev6" {
+  provider      = aws.us-west-1
+  ami           = "ami-01f87c43e618bf8f0"
+  instance_type = "t2.micro"
+  key_name      = "dev"
+  tags = {
+    Name = "Dev Server 6"
+  }
+  vpc_security_group_ids = [aws_security_group.ssh-access-us-west-2.id]
 }
 
 resource "aws_key_pair" "dev" {
