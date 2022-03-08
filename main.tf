@@ -28,7 +28,7 @@ resource "aws_instance" "dev4" {
   instance_type = "t2.micro"
   key_name      = "dev"
   tags = {
-    Name = "dev4"
+    Name = "Dev Server 4"
   }
   vpc_security_group_ids = [aws_security_group.ssh-access.id]
   depends_on = [
@@ -41,7 +41,7 @@ resource "aws_instance" "dev5" {
   instance_type = "t2.micro"
   key_name      = "dev"
   tags = {
-    Name = "dev5"
+    Name = "Dev Server 5"
   }
   vpc_security_group_ids = [aws_security_group.ssh-access.id]
 }
@@ -49,21 +49,6 @@ resource "aws_instance" "dev5" {
 resource "aws_key_pair" "dev" {
   key_name   = "dev"
   public_key = file("dev.pub")
-}
-
-resource "aws_security_group" "ssh-access" {
-  name        = "ssh-access"
-  description = "ssh-access"
-  ingress {
-    description = "ssh-access"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-  tags = {
-    Name = "ssh-access"
-  }
 }
 
 resource "aws_s3_bucket" "dev-4-bucket" {
