@@ -31,6 +31,9 @@ resource "aws_instance" "dev4" {
     Name = "dev4"
   }
   vpc_security_group_ids = [aws_security_group.ssh-access.id]
+  depends_on = [
+    aws_s3_bucket.dev-4-bucket
+  ]
 }
 
 resource "aws_instance" "dev5" {
