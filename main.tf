@@ -55,7 +55,7 @@ resource "aws_instance" "dev6" {
   provider      = aws.us-west-1
   ami           = "ami-01f87c43e618bf8f0"
   instance_type = "t2.micro"
-  key_name      = "dev-us-west-1"
+  key_name      = "dev"
   tags = {
     Name = "Dev Server 6"
   }
@@ -63,17 +63,6 @@ resource "aws_instance" "dev6" {
   depends_on = [
     aws_dynamodb_table.dynamodb-homologacao
   ]
-}
-
-resource "aws_key_pair" "dev" {
-  key_name   = "dev"
-  public_key = file("dev.pub")
-}
-
-resource "aws_key_pair" "dev-us-west-1" {
-  provider   = aws.us-west-1
-  key_name   = "dev-us-west-1"
-  public_key = file("dev.pub")
 }
 
 resource "aws_s3_bucket" "dev-4-bucket" {
