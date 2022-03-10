@@ -7,6 +7,10 @@ variable "amis" {
   }
 }
 
+variable "instance" {
+  default = "t2.micro"
+}
+
 variable "cidr_remote_access" {
   type    = list(any)
   default = ["0.0.0.0/0"]

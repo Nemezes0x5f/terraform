@@ -19,8 +19,8 @@ provider "aws" {
 
 resource "aws_instance" "dev" {
   count         = 3
-  ami           = "ami-0892d3c7ee96c0bf7"
-  instance_type = "t2.micro"
+  ami           = var.amis.us-west-2
+  instance_type = var.instance
   key_name      = "dev"
   tags = {
     Name = "Dev Server ${count.index}"
@@ -29,8 +29,8 @@ resource "aws_instance" "dev" {
 }
 
 # resource "aws_instance" "dev4" {
-#   ami           = "ami-0892d3c7ee96c0bf7"
-#   instance_type = "t2.micro"
+#   ami           = var.amis.us-west-2
+#   instance_type = var.instance
 #   key_name      = "dev"
 #   tags = {
 #     Name = "Dev Server 4"
@@ -42,8 +42,8 @@ resource "aws_instance" "dev" {
 # }
 
 resource "aws_instance" "dev5" {
-  ami           = "ami-0892d3c7ee96c0bf7"
-  instance_type = "t2.micro"
+  ami           = var.amis.us-west-2
+  instance_type = var.instance
   key_name      = "dev"
   tags = {
     Name = "Dev Server 5"
@@ -53,8 +53,8 @@ resource "aws_instance" "dev5" {
 
 resource "aws_instance" "dev6" {
   provider      = aws.us-west-1
-  ami           = "ami-01f87c43e618bf8f0"
-  instance_type = "t2.micro"
+  ami           = var.amis.us-west-1
+  instance_type = var.instance
   key_name      = "dev"
   tags = {
     Name = "Dev Server 6"
@@ -65,6 +65,16 @@ resource "aws_instance" "dev6" {
   ]
 }
 
+
+resource "aws_instance" "dev7" {
+  provider      = aws.us-west-1
+  ami           = var.amis.us-west-1
+  instance_type = var.instance
+  key_name      = "dev"
+  tags = {
+    Name = "Dev Server 7"
+  }
+}
 # resource "aws_s3_bucket" "dev-4-bucket" {
 #   bucket = "dev-4-bucket"
 #   acl    = "private"
