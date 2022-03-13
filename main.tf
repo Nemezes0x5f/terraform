@@ -101,3 +101,12 @@ resource "aws_dynamodb_table" "dynamodb-homologacao" {
     type = "S"
   }
 }
+
+resource "aws_s3_bucket" "terraform-cloud-test" {
+  bucket = "terraform-cloud-test"
+  acl    = "private"
+  tags = {
+    Name        = "Terraform Cloud Test"
+    Environment = "Dev"
+  }
+}
